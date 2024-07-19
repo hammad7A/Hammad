@@ -1,16 +1,17 @@
-#First make the player's dictionary containing health name and inventory
-#I will make an attack pattern for the player
-#Then I will have a goblin attack the player
-#The player will take damage
-#And his health will get less but he will defeat goblin!
 import random
 player_name = input("Enter your name ")
 enemy_name = "goblin"
 
-levels = {1:{'name':player_name,'hp':100},2:{'name':player_name,'hp':125}
-,3:{'name':player_name,'hp':130},4:{'name':player_name,'hp':150},5:{'name':player_name,'hp':160}}
-levels_enemy = {1:{'name':enemy_name,'hp':50},2:{'name':enemy_name,'hp':60},
-3:{'name':enemy_name,'hp':60},4:{'name':enemy_name,'hp':75},5:{'name':enemy_name,'hp':100}}
+levels = {1:{'name':player_name,'hp':100}
+,2:{'name':player_name,'hp':125}
+,3:{'name':player_name,'hp':130}
+,4:{'name':player_name,'hp':150}
+,5:{'name':player_name,'hp':160}}
+levels_enemy = {1:{'name':enemy_name,'hp':50}
+,2:{'name':enemy_name,'hp':60},
+3:{'name':enemy_name,'hp':60},
+4:{'name':enemy_name,'hp':75},
+5:{'name':enemy_name,'hp':100}}
 
 def level_one():
     while True:

@@ -1,90 +1,58 @@
 import random
-player_name = input("Enter your name ")
-enemy_name = "goblin"
 
-levels = {1:{'name':player_name,'hp':100}
-,2:{'name':player_name,'hp':125}
-,3:{'name':player_name,'hp':130}
-,4:{'name':player_name,'hp':150}
-,5:{'name':player_name,'hp':160}}
-levels_enemy = {1:{'name':enemy_name,'hp':50}
-,2:{'name':enemy_name,'hp':60},
-3:{'name':enemy_name,'hp':60},
-4:{'name':enemy_name,'hp':75},
-5:{'name':enemy_name,'hp':100}}
+player_name = input("Enter your name: ")
+last_player_name = 'Gri'
+enemy_name = 'Goblin'
+last_name_enemy = 'VimUser'
+player = {
+    1: {'name': player_name, 'hp': 100, 'damage': 10},
+    2: {'name': player_name, 'hp': 100, 'damage': 12},
+    3: {'name': player_name, 'hp': 125, 'damage': 15},
+    4: {'name': player_name, 'hp': 130, 'damage': 20},
+    5: {'name': player_name, 'hp': 150, 'damage': 25},
+    6: {'name': last_player_name, 'hp': 3000, 'damage': random.randint(500, 600)}
+}
 
-def level_one():
-    while True:
-        attack_choice = input("Enter '1' to attack: ")
-        if attack_choice == '1':
-            attack_damage = 7
-            levels_enemy[1]["hp"] -= attack_damage
-            goblin_damage = 5
-            levels[1]['hp'] -= goblin_damage
-            print(levels_enemy[1])
-            print(levels[1])
-            if levels_enemy[1]['hp'] < 0:
-                print(f"You have defeated {levels_enemy[1]['name']} successfully! ")
-                print(f"You have passed level one and now you can now move onto level 2! ")
-                return levels_enemy[1]
-def level_two():
-    while True:
-        attack_choice = input("Enter '1' to attack: ")
-        if attack_choice == '1':
-            attack_damage = 8
-            levels_enemy[2]['hp'] -= attack_damage
-            goblin_damage = random.randint(0,15)
-            levels[2]['hp'] -= goblin_damage
-            print(levels_enemy[2])
-            print(levels[2])
-            if levels_enemy[2]['hp'] < 0:
-                print(f"You have defeated {levels_enemy[2]['name']} successfully! ")
-                print(f"You have passed level two and you can now move onto level 3")
-                return levels_enemy[2]
-def level_three():
-    while True:
-        attack_choice = input("Enter '1' to attack: ")
-        if attack_choice == '1':
-            attack_damage = 10
-            levels_enemy[3]['hp'] -= attack_damage
-            goblin_damage = random.randint(5,20)
-            levels[3]['hp'] -= goblin_damage
-            print(levels_enemy[3])
-            print(levels[3])
-            if levels_enemy[3]['hp'] < 0:
-                print(f"You have defeated {levels_enemy[2]['name']} successfully! ")
-                print(f"You have passed level two and you can now move onto level 4")
-                return levels_enemy[3]
-def level_four():
-    while True:
-        attack_choice = input("Enter '1' to attack: ")
-        if attack_choice == '1':
-            attack_damage = 13
-            levels_enemy[4]['hp'] -= attack_damage
-            goblin_damage = random.randint(8,25)
-            levels[4]['hp'] -= goblin_damage
-            print(levels_enemy[4])
-            print(levels[4])
-            if levels_enemy[4]['hp'] < 0:
-                print(f"You have defeated {levels_enemy[2]['name']} successfully! ")
-                print(f"You have passed level two and you can now move onto level 5")
-                return levels_enemy[4]
-def level_five():
-    while True:
-        attack_choice = input("Enter '1' to attack: ")
-        if attack_choice == '1':
-            attack_damage = 15
-            levels_enemy[5]['hp'] -= attack_damage
-            goblin_damage = random.randint(10,30)
-            levels[5]['hp'] -= goblin_damage
-            print(levels_enemy[5])
-            print(levels[5])
-            if levels_enemy[5]['hp'] < 0:
-                print(f"You have defeated {levels_enemy[2]['name']} successfully! ")
-                print(f"Congrats! You have completed the game! ")
-                return levels_enemy[5]
-level_one()
-level_two()
-level_three()
-level_four()
-level_five()
+enemy = {
+    1: {'name': enemy_name, 'hp': 50, 'damage': 5},
+    2: {'name': enemy_name, 'hp': 60, 'damage': 9},
+    3: {'name': enemy_name, 'hp': 75, 'damage': 15},
+    4: {'name': enemy_name, 'hp': 80, 'damage': 15},
+    5: {'name': enemy_name, 'hp': 100, 'damage': 20},
+    6: {'name': last_name_enemy, 'hp': 5000, 'damage': random.randint(150, 325)}
+}
+
+
+def main(player: dict, enemy: dict):
+    for i in range(1, 7):
+        print(f"This is level {i} Battle ")
+        while enemy[i]['hp'] > 0:
+            attack_choice = input("Enter '1' to attack: ")
+            if attack_choice != '1':
+                print("Please press '1' to attack: ")
+            if attack_choice == '1':
+                attack_damage = player[i]['damage']
+                enemy[i]['hp'] -= attack_damage
+                goblin_damage = enemy[i]['damage']
+                player[i]['hp'] -= goblin_damage
+
+                if enemy[i]['hp'] > 0:
+                    print(f"The enemy has {enemy[i]['hp']} hp left ")
+                    print(f"You have {player[i]['hp']} hp left ")
+                    if i == 5:
+                        print(f"You have defeated {enemy[i]['name']} enemy! ")
+                    if i == 6:
+                        player_buff = attack_damage + 150
+                        enemy_buff = goblin_damage + 175
+                        enemy[i]['hp'] -= player_buff
+                        player[i]['hp'] -= enemy_buff
+                        print(f"VimUser has {enemy[i]['hp']} hp left! ")
+                        print(f"You have {player[i]['hp']} hp left! ")
+                    if player[i]['hp'] < 0:
+                        print(f"You lost! ")
+                    else:
+                        if enemy[i]['hp'] < 0:
+                            print(f"Congrats! You defeated the enemy! ")
+
+
+main(player, enemy)

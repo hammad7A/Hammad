@@ -10,9 +10,9 @@ CYAN = '\033[96m'
 RESET = '\033[0m'
 def main():
     print(f"{RED}Welcome to the Gricane world")
-    print(f"You can only take/use 1 item from a door so choose wisely! ")
-    print(f"You can never come back to the door you are out of once! ")
-    print(f"You have MalevolentShrine and BeastChiller special attacks")
+    print(f"You can only use special attacks on bosses and minibosses")
+    print(f"You will be told when you can use them")
+    print(f"You have MalevolentShrine and BeastChiller special attacks until you are given new ones..")
     print(f"Type faster to have chances of doing more damage! ")
     player_health = 200
     player_inventory = []

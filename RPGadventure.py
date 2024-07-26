@@ -10,9 +10,9 @@ CYAN = '\033[96m'
 RESET = '\033[0m'
 def main():
     print(f"{RED}Welcome to the Gricane world")
-    print(f"You can only use special attacks on bosses and minibosses")
-    print(f"You will be told when you can use them")
-    print(f"You have MalevolentShrine and BeastChiller special attacks until you are given new ones..")
+    print(f"You can only take/use 1 item from a door so choose wisely! ")
+    print(f"You can never come back to the door you are out of once! ")
+    print(f"You have MalevolentShrine and BeastChiller special attacks")
     print(f"Type faster to have chances of doing more damage! ")
     player_health = 200
     player_inventory = []
@@ -93,10 +93,11 @@ def first_dungeon(player_intelligence, player_inventory, goblin_health, player_h
                 elif player_health < 0:
                     print("You lost! ")
                     sys.exit()
-                start_time = time.time()
+                
                 BeastChiller = 0
                 MalevolentShrine = 0
                 while first_boss['Health'] > 0:
+                    start_time = time.time()
                     attack_boss = input(f"{BLUE}Enter the name of your abilitys to attack: ").lower()
                     end_time = time.time()
                     if attack_boss == 'malevolentshrine':
@@ -217,7 +218,7 @@ def second_dungeon(player_intelligence, player_inventory, MalevolentShrine, Beas
     print(f"Your current hp is {player_health} ")
     goblin_health_hidden = 1000
     while True:
-
+        
         goblin_damage_hidden = random.randint(215,300)
         attack_enemies = input("Press '1' to attack: ")
         if attack_enemies == '1':
@@ -256,7 +257,9 @@ def second_dungeon(player_intelligence, player_inventory, MalevolentShrine, Beas
                     break
     print(f"Gri: You find the door and I will kick his ass, Saad")
     while second_boss['Health'] > 0:
+        start_time = time.time()
         attack_boss = input(f"{YELLOW}Enter the name of your abilities to attack: ").lower()
+        end_time = time.time()
         if attack_boss == 'malevolentshrine':
             boss_random_two = random.randint(250, 400)
             MalevolentShrine = random.randint(200,625)
@@ -596,6 +599,7 @@ def dungeon_four(InfernalWrath,ChaosSurge,player_health,player_inventory,Carol_H
     while fourth_boss['Health'] > 0:
         start_time = time.time()
         attack_tyrant = input(f"{RED}Enter the name of your abilities to attack: ").lower()
+        end_time = time.time()
         if attack_tyrant == 'infernalwrath':
             if typing_speed >= 2.0:
                 InfernalWrath = random.randint(3750,5500)
@@ -686,7 +690,9 @@ def final_dungeon(InfernalWrath,ChaosSurge,player_health,player_power,player_inv
         final_infernalwrath = InfernalWrath+InfernalWrath_buff
         reaper_damage_one = random.randint(15000,25250)
         reaper_damage_two = random.randint(13250,27550)
+        start_time = time.time()
         attack_boss = input(f"{RED}Enter the name of your abilities to attack: ").lower()
+        end_time = time.time()
         if attack_boss == 'infernalwrath':
             Carol_Attack += random.randint(5000,12500)
             final_boss['Health'] -= final_infernalwrath
